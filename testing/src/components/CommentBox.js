@@ -24,6 +24,7 @@ class CommentBox extends Component {
         <div>
           <button>Submit Comment</button>
         </div>
+        Commment realtime: {this.state.comment}
       </form>
     );
   }

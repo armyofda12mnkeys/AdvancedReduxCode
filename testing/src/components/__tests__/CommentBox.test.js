@@ -16,3 +16,32 @@ it('has a text area and a button', () => {
   expect(wrapped.find('textarea').length).toEqual(1);
   expect(wrapped.find('button').length).toEqual(1);
 });
+
+
+describe('the textarea',  () => {
+
+  beforeEach(() => {
+    //wrapped = mount(<CommentBox />);
+  
+    wrapped.find('textarea').simulate('change', {
+      target: {
+        value: 'new comment'
+      }
+    });
+    wrapped.update();
+  });
+
+
+  it('has a text area that users can type in', () => {
+    expect( wrapped.find('textarea').prop('value') ).toEqual('new comment');
+  });
+
+  it('has a text area when submitted, textarea is emptied', () => {
+    //expect( wrapped.find('textarea').prop('value') ).toEqual('new comment');
+    wrapped.find('form').simulate('submit');
+    wrapped.update();
+
+    expect( wrapped.find('textarea').prop('value') ).toEqual('');
+  });
+
+});
